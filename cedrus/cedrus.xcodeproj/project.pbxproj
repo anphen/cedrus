@@ -439,6 +439,7 @@
 		34C4DC981D2E021F00ADE1DF /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C4DC971D2E021F00ADE1DF /* libstdc++.6.0.9.tbd */; };
 		34D621151D40CBB400DB6EA0 /* UIView+LayoutMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D621141D40CBB400DB6EA0 /* UIView+LayoutMethods.m */; };
 		E53C4547C80BA43ABD72B58F /* libPods-cedrus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AFA63E58435B23112EDFEFE7 /* libPods-cedrus.a */; };
+		FBC65C161D47C58B00666595 /* LTMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBC65C151D47C58B00666595 /* LTMineViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1261,6 +1262,8 @@
 		640611C23149546C34653A8D /* Pods-cedrus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cedrus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cedrus/Pods-cedrus.debug.xcconfig"; sourceTree = "<group>"; };
 		9211BEE8C5CAB64DA8A93C17 /* Pods-cedrus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cedrus.release.xcconfig"; path = "Pods/Target Support Files/Pods-cedrus/Pods-cedrus.release.xcconfig"; sourceTree = "<group>"; };
 		AFA63E58435B23112EDFEFE7 /* libPods-cedrus.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-cedrus.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBC65C141D47C58B00666595 /* LTMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTMineViewController.h; sourceTree = "<group>"; };
+		FBC65C151D47C58B00666595 /* LTMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTMineViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1380,11 +1383,11 @@
 		34B017511D2CE86D00AD3BE7 /* cedrus */ = {
 			isa = PBXGroup;
 			children = (
+				FBC65C131D47C57900666595 /* Mine */,
 				344B1B271D41E93D0061A425 /* Utility */,
 				345FDA381D3F66CD00AC6554 /* Global */,
 				34AA90341D3F54A100E9EFB1 /* Category */,
 				340FC22A1D37838F00807608 /* Base */,
-				34B01AC11D2CEE3400AD3BE7 /* Mine */,
 				34B017851D2CEE3100AD3BE7 /* Cart */,
 				34B017861D2CEE3100AD3BE7 /* Classify */,
 				34B017871D2CEE3100AD3BE7 /* Home */,
@@ -2511,13 +2514,6 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
-		34B01AC11D2CEE3400AD3BE7 /* Mine */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Mine;
-			sourceTree = "<group>";
-		};
 		34B01AC21D2CEE3400AD3BE7 /* Other */ = {
 			isa = PBXGroup;
 			children = (
@@ -2569,6 +2565,15 @@
 				AFA63E58435B23112EDFEFE7 /* libPods-cedrus.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FBC65C131D47C57900666595 /* Mine */ = {
+			isa = PBXGroup;
+			children = (
+				FBC65C141D47C58B00666595 /* LTMineViewController.h */,
+				FBC65C151D47C58B00666595 /* LTMineViewController.m */,
+			);
+			path = Mine;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3084,6 +3089,7 @@
 				34B01C3B1D2CEE3500AD3BE7 /* TLAllAddresses.m in Sources */,
 				34B01C281D2CEE3500AD3BE7 /* TLNavigationBar.m in Sources */,
 				34B01C191D2CEE3500AD3BE7 /* LegendView.m in Sources */,
+				FBC65C161D47C58B00666595 /* LTMineViewController.m in Sources */,
 				34B01B801D2CEE3500AD3BE7 /* TLBaseTool.m in Sources */,
 				34B01B271D2CEE3400AD3BE7 /* TLPostInfo.m in Sources */,
 				34B01BDE1D2CEE3500AD3BE7 /* TLMyPoint.m in Sources */,
