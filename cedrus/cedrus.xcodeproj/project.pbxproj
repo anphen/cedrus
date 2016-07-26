@@ -11,6 +11,7 @@
 		340FC2191D377C8F00807608 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 340FC2131D377C1D00807608 /* LaunchScreen.storyboard */; };
 		340FC21A1D377C8F00807608 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 340FC2151D377C1D00807608 /* Main.storyboard */; };
 		343AB8A21D474AFE007BB418 /* UIViewController+Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = 343AB8A01D474AFE007BB418 /* UIViewController+Loading.m */; };
+		343AB8A51D47C425007BB418 /* LTCartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343AB8A41D47C425007BB418 /* LTCartViewController.m */; };
 		344B1B2A1D41E9770061A425 /* LTUrlUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 344B1B291D41E9770061A425 /* LTUrlUtility.m */; };
 		344B1B2D1D41F1870061A425 /* LTTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 344B1B2C1D41F1870061A425 /* LTTabBar.m */; };
 		344B1B301D41F1D30061A425 /* LTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 344B1B2F1D41F1D30061A425 /* LTMainViewController.m */; };
@@ -456,6 +457,8 @@
 		340FC2161D377C1D00807608 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		343AB8A01D474AFE007BB418 /* UIViewController+Loading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Loading.m"; sourceTree = "<group>"; };
 		343AB8A11D474AFE007BB418 /* UIViewController+Loading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Loading.h"; sourceTree = "<group>"; };
+		343AB8A31D47C425007BB418 /* LTCartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTCartViewController.h; sourceTree = "<group>"; };
+		343AB8A41D47C425007BB418 /* LTCartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTCartViewController.m; sourceTree = "<group>"; };
 		344B1B281D41E9770061A425 /* LTUrlUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTUrlUtility.h; sourceTree = "<group>"; };
 		344B1B291D41E9770061A425 /* LTUrlUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTUrlUtility.m; sourceTree = "<group>"; };
 		344B1B2B1D41F1860061A425 /* LTTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTTabBar.h; sourceTree = "<group>"; };
@@ -1413,6 +1416,8 @@
 		34B017851D2CEE3100AD3BE7 /* Cart */ = {
 			isa = PBXGroup;
 			children = (
+				343AB8A31D47C425007BB418 /* LTCartViewController.h */,
+				343AB8A41D47C425007BB418 /* LTCartViewController.m */,
 			);
 			path = Cart;
 			sourceTree = "<group>";
@@ -2938,6 +2943,7 @@
 				34B01C311D2CEE3500AD3BE7 /* TLCheckoutViewController.m in Sources */,
 				34B01C4A1D2CEE3500AD3BE7 /* TLShopList.m in Sources */,
 				34B01B051D2CEE3400AD3BE7 /* TLProductsViewController.m in Sources */,
+				343AB8A51D47C425007BB418 /* LTCartViewController.m in Sources */,
 				34B01B8F1D2CEE3500AD3BE7 /* TLFunctionViewController.m in Sources */,
 				34B01B3C1D2CEE3400AD3BE7 /* TLShopCreateRequest.m in Sources */,
 				34B01B411D2CEE3400AD3BE7 /* TLGroupCouponDetailHeadView.m in Sources */,
