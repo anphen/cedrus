@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TLChoiceCouponListViewCell" id="KGk-i7-Jjw" customClass="TLChoiceCouponListViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="不使用" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ujZ-Nh-i9W">
+                        <rect key="frame" x="10" y="11" width="273" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="WMc-oU-XcN"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYs-Jt-MFg">
+                        <rect key="frame" x="288" y="11" width="22" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="22" id="fCe-Zx-FSW"/>
+                            <constraint firstAttribute="height" constant="22" id="hXn-zI-T3J"/>
+                        </constraints>
+                        <state key="normal" image="icon_unselected"/>
+                        <state key="selected" image="icon_selected"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="HYs-Jt-MFg" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="36O-hI-rdt"/>
+                    <constraint firstAttribute="trailing" secondItem="HYs-Jt-MFg" secondAttribute="trailing" constant="10" id="9If-ry-ScY"/>
+                    <constraint firstItem="ujZ-Nh-i9W" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="DWs-GQ-eWQ"/>
+                    <constraint firstItem="HYs-Jt-MFg" firstAttribute="leading" secondItem="ujZ-Nh-i9W" secondAttribute="trailing" constant="5" id="NhA-ks-7pC"/>
+                    <constraint firstItem="ujZ-Nh-i9W" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="qJk-tR-ozs"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="couponName" destination="ujZ-Nh-i9W" id="hUV-6b-LP4"/>
+                <outlet property="seleteType" destination="HYs-Jt-MFg" id="v4w-fX-Yg5"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icon_selected" width="39" height="39"/>
+        <image name="icon_unselected" width="39" height="39"/>
+    </resources>
+</document>

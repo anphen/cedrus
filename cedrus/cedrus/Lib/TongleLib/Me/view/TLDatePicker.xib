@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="tBb-nF-HC7" customClass="TLDatePicker">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="208"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="XPl-cw-2Gx">
+                    <rect key="frame" x="0.0" y="46" width="375" height="162"/>
+                    <date key="date" timeIntervalSinceReferenceDate="463199625.45325702">
+                        <!--2015-09-06 02:33:45 +0000-->
+                    </date>
+                    <date key="minimumDate" timeIntervalSinceReferenceDate="-978267600">
+                        <!--1970-01-01 11:00:00 +0000-->
+                    </date>
+                    <date key="maximumDate" timeIntervalSinceReferenceDate="1167562800">
+                        <!--2037-12-31 11:00:00 +0000-->
+                    </date>
+                </datePicker>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dn9-of-33T">
+                    <rect key="frame" x="0.0" y="2" width="375" height="44"/>
+                    <items>
+                        <barButtonItem title="取消" width="51" style="done" id="rAj-8x-MFM">
+                            <connections>
+                                <action selector="cancelButton:" destination="tBb-nF-HC7" id="0yK-cH-3EK"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="jO8-i4-emZ"/>
+                        <barButtonItem title="确定" width="51" style="done" id="Cz0-nn-J61">
+                            <connections>
+                                <action selector="sureButton:" destination="tBb-nF-HC7" id="pWH-El-4G1"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="datapicker" destination="XPl-cw-2Gx" id="4GG-dP-WA4"/>
+            </connections>
+            <point key="canvasLocation" x="213.5" y="263"/>
+        </view>
+    </objects>
+</document>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="myfiled" rowHeight="40" id="KGk-i7-Jjw" customClass="TLMyFiledTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="pay_icon_normal" translatesAutoresizingMaskIntoConstraints="NO" id="tHX-46-nBi">
+                        <rect key="frame" x="280" y="9" width="22" height="23"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="10" id="Klm-tb-Xs4"/>
+                            <constraint firstAttribute="height" constant="10" id="u6S-oX-C94"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nTx-2C-1o2">
+                        <rect key="frame" x="12" y="1" width="268" height="39"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="nTx-2C-1o2" secondAttribute="bottom" id="1TY-Uf-Ik0"/>
+                    <constraint firstItem="nTx-2C-1o2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="3zc-fO-GUW"/>
+                    <constraint firstItem="tHX-46-nBi" firstAttribute="leading" secondItem="nTx-2C-1o2" secondAttribute="trailing" id="PNk-Ek-oe9"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="tHX-46-nBi" secondAttribute="trailing" constant="10" id="TU0-jc-5eN"/>
+                    <constraint firstItem="nTx-2C-1o2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="pbh-w1-PcA"/>
+                    <constraint firstItem="nTx-2C-1o2" firstAttribute="centerY" secondItem="tHX-46-nBi" secondAttribute="centerY" id="xci-bu-KCS"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="filedName" destination="nTx-2C-1o2" id="LN1-Ye-n3n"/>
+                <outlet property="selectimage" destination="tHX-46-nBi" id="V8O-gQ-uIl"/>
+            </connections>
+            <point key="canvasLocation" x="469" y="255"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="pay_icon_normal" width="11" height="11"/>
+    </resources>
+</document>

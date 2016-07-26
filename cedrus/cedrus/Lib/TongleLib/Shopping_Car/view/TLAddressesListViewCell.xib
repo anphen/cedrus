@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addressesList" rowHeight="69" id="KGk-i7-Jjw" customClass="TLAddressesListViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="87"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="难得放假看" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e90-VD-13M">
+                        <rect key="frame" x="12" y="18" width="149" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="PpH-gK-LQb"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="151510794704" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ed-Ub-jX5">
+                        <rect key="frame" x="169" y="18" width="110" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="110" id="5Yk-GN-uoL"/>
+                            <constraint firstAttribute="height" constant="21" id="hNO-vg-83W"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxf-M2-9oN">
+                        <rect key="frame" x="288" y="32" width="22" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="22" id="8Sd-oI-gxT"/>
+                            <constraint firstAttribute="height" constant="22" id="Xan-pD-MeF"/>
+                        </constraints>
+                        <state key="normal" image="pay_icon_normal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="selectBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="02R-6f-0YF"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="三大开发可视电话反抗精神上帝看见富士康觉得很疯狂很深刻觉得和反抗精神" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="840-8d-mwa">
+                        <rect key="frame" x="12" y="49" width="267" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="cf5-4f-SQK"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B4Q-Gt-190">
+                        <rect key="frame" x="0.0" y="86" width="320" height="1"/>
+                        <color key="backgroundColor" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="9No-cl-9hM"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="9Ed-Ub-jX5" firstAttribute="leading" secondItem="e90-VD-13M" secondAttribute="trailing" constant="8" id="07b-7d-OiV"/>
+                    <constraint firstItem="gxf-M2-9oN" firstAttribute="leading" secondItem="9Ed-Ub-jX5" secondAttribute="trailing" constant="9" id="5pv-25-3b8"/>
+                    <constraint firstItem="B4Q-Gt-190" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="FEq-pc-43H"/>
+                    <constraint firstAttribute="trailing" secondItem="B4Q-Gt-190" secondAttribute="trailing" id="FOg-mw-gLa"/>
+                    <constraint firstAttribute="bottom" secondItem="B4Q-Gt-190" secondAttribute="bottom" id="J3X-4H-yOg"/>
+                    <constraint firstItem="840-8d-mwa" firstAttribute="leading" secondItem="e90-VD-13M" secondAttribute="leading" id="KMq-zt-rTM"/>
+                    <constraint firstAttribute="centerY" secondItem="gxf-M2-9oN" secondAttribute="centerY" id="XjK-pI-U8q"/>
+                    <constraint firstItem="e90-VD-13M" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="ZBd-Gb-mxj"/>
+                    <constraint firstItem="9Ed-Ub-jX5" firstAttribute="top" secondItem="e90-VD-13M" secondAttribute="top" id="cIC-li-p5W"/>
+                    <constraint firstItem="840-8d-mwa" firstAttribute="top" secondItem="e90-VD-13M" secondAttribute="bottom" constant="10" id="lec-n6-PZ0"/>
+                    <constraint firstItem="e90-VD-13M" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="18" id="qkk-Ga-rVr"/>
+                    <constraint firstItem="9Ed-Ub-jX5" firstAttribute="trailing" secondItem="840-8d-mwa" secondAttribute="trailing" id="rHs-KW-gub"/>
+                    <constraint firstAttribute="trailing" secondItem="gxf-M2-9oN" secondAttribute="trailing" constant="10" id="zQR-Yh-HQw"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="detailAddress" destination="840-8d-mwa" id="Tf5-fP-36e"/>
+                <outlet property="selectBtn" destination="gxf-M2-9oN" id="H2g-AN-ZWo"/>
+                <outlet property="tel" destination="9Ed-Ub-jX5" id="KX0-sm-Wvh"/>
+                <outlet property="userName" destination="e90-VD-13M" id="wXf-mp-cqR"/>
+            </connections>
+            <point key="canvasLocation" x="301" y="173"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="pay_icon_normal" width="11" height="11"/>
+    </resources>
+</document>
