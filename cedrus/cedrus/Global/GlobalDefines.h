@@ -55,6 +55,9 @@
 #define kCustomBlackColor            [UIColor getColor:@"333333"]
 #define kCustomGrayColor             [UIColor getColor:@"999999"]
 
+#define kScreenWidth  [[UIScreen mainScreen] bounds].size.width
+#define kScreenHeight  [[UIScreen mainScreen] bounds].size.height
+
 //
 #ifdef DEBUG
 #define LTLog(...) NSLog(@"%s 第%d行 \n %@\n\n",__func__,__LINE__,[NSString stringWithFormat:__VA_ARGS__])

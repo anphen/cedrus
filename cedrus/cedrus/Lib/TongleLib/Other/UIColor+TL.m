@@ -12,7 +12,7 @@
 @implementation UIColor (TL)
 
 
-+(UIColor *)getColor:(NSString *)hexColor
++ (UIColor *)getColor:(NSString *)hexColor
 {
     UIColor *result = nil;
     

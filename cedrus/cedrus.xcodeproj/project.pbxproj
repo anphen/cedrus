@@ -12,6 +12,10 @@
 		340FC21A1D377C8F00807608 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 340FC2151D377C1D00807608 /* Main.storyboard */; };
 		343AB8A21D474AFE007BB418 /* UIViewController+Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = 343AB8A01D474AFE007BB418 /* UIViewController+Loading.m */; };
 		343AB8A51D47C425007BB418 /* LTCartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343AB8A41D47C425007BB418 /* LTCartViewController.m */; };
+		343AB8DC1D4883E2007BB418 /* NSURL+QueryDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 343AB8DB1D4883E2007BB418 /* NSURL+QueryDictionary.m */; };
+		343AB8E01D488BB6007BB418 /* UserGuideController.m in Sources */ = {isa = PBXBuildFile; fileRef = 343AB8DF1D488BB6007BB418 /* UserGuideController.m */; };
+		343AB8E41D4896B8007BB418 /* GetVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 343AB8E31D4896B8007BB418 /* GetVersion.m */; };
+		343AB8E71D4897E7007BB418 /* LTVersionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 343AB8E61D4897E7007BB418 /* LTVersionItem.m */; };
 		344B1B2A1D41E9770061A425 /* LTUrlUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 344B1B291D41E9770061A425 /* LTUrlUtility.m */; };
 		344B1B2D1D41F1870061A425 /* LTTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 344B1B2C1D41F1870061A425 /* LTTabBar.m */; };
 		344B1B301D41F1D30061A425 /* LTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 344B1B2F1D41F1D30061A425 /* LTMainViewController.m */; };
@@ -460,6 +464,14 @@
 		343AB8A11D474AFE007BB418 /* UIViewController+Loading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Loading.h"; sourceTree = "<group>"; };
 		343AB8A31D47C425007BB418 /* LTCartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTCartViewController.h; sourceTree = "<group>"; };
 		343AB8A41D47C425007BB418 /* LTCartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTCartViewController.m; sourceTree = "<group>"; };
+		343AB8DA1D4883E2007BB418 /* NSURL+QueryDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+QueryDictionary.h"; sourceTree = "<group>"; };
+		343AB8DB1D4883E2007BB418 /* NSURL+QueryDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+QueryDictionary.m"; sourceTree = "<group>"; };
+		343AB8DE1D488BB6007BB418 /* UserGuideController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserGuideController.h; sourceTree = "<group>"; };
+		343AB8DF1D488BB6007BB418 /* UserGuideController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserGuideController.m; sourceTree = "<group>"; };
+		343AB8E21D4896B8007BB418 /* GetVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetVersion.h; sourceTree = "<group>"; };
+		343AB8E31D4896B8007BB418 /* GetVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetVersion.m; sourceTree = "<group>"; };
+		343AB8E51D4897E7007BB418 /* LTVersionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTVersionItem.h; sourceTree = "<group>"; };
+		343AB8E61D4897E7007BB418 /* LTVersionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTVersionItem.m; sourceTree = "<group>"; };
 		344B1B281D41E9770061A425 /* LTUrlUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTUrlUtility.h; sourceTree = "<group>"; };
 		344B1B291D41E9770061A425 /* LTUrlUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTUrlUtility.m; sourceTree = "<group>"; };
 		344B1B2B1D41F1860061A425 /* LTTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTTabBar.h; sourceTree = "<group>"; };
@@ -1326,6 +1338,26 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		343AB8DD1D488BAE007BB418 /* Guide */ = {
+			isa = PBXGroup;
+			children = (
+				343AB8DE1D488BB6007BB418 /* UserGuideController.h */,
+				343AB8DF1D488BB6007BB418 /* UserGuideController.m */,
+			);
+			path = Guide;
+			sourceTree = "<group>";
+		};
+		343AB8E11D4896B0007BB418 /* Version */ = {
+			isa = PBXGroup;
+			children = (
+				343AB8E21D4896B8007BB418 /* GetVersion.h */,
+				343AB8E31D4896B8007BB418 /* GetVersion.m */,
+				343AB8E51D4897E7007BB418 /* LTVersionItem.h */,
+				343AB8E61D4897E7007BB418 /* LTVersionItem.m */,
+			);
+			path = Version;
+			sourceTree = "<group>";
+		};
 		344B1B271D41E93D0061A425 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -1348,6 +1380,8 @@
 		34AA90341D3F54A100E9EFB1 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				343AB8DA1D4883E2007BB418 /* NSURL+QueryDictionary.h */,
+				343AB8DB1D4883E2007BB418 /* NSURL+QueryDictionary.m */,
 				343AB8A01D474AFE007BB418 /* UIViewController+Loading.m */,
 				343AB8A11D474AFE007BB418 /* UIViewController+Loading.h */,
 				34D621131D40CBB400DB6EA0 /* UIView+LayoutMethods.h */,
@@ -1383,6 +1417,8 @@
 		34B017511D2CE86D00AD3BE7 /* cedrus */ = {
 			isa = PBXGroup;
 			children = (
+				343AB8E11D4896B0007BB418 /* Version */,
+				343AB8DD1D488BAE007BB418 /* Guide */,
 				FBC65C131D47C57900666595 /* Mine */,
 				344B1B271D41E93D0061A425 /* Utility */,
 				345FDA381D3F66CD00AC6554 /* Global */,
@@ -2943,6 +2979,7 @@
 				34B01B021D2CEE3400AD3BE7 /* TLProdMessageViewController.m in Sources */,
 				34B01B1E1D2CEE3400AD3BE7 /* TLMasterPost.m in Sources */,
 				34B01C1D1D2CEE3500AD3BE7 /* NSArray+FPAdditions.m in Sources */,
+				343AB8E71D4897E7007BB418 /* LTVersionItem.m in Sources */,
 				34B01C1C1D2CEE3500AD3BE7 /* FPTuple.m in Sources */,
 				34B01B481D2CEE3400AD3BE7 /* TLGroupPurchaseViewShopView.m in Sources */,
 				34B01C311D2CEE3500AD3BE7 /* TLCheckoutViewController.m in Sources */,
@@ -2975,6 +3012,7 @@
 				34B01BC31D2CEE3500AD3BE7 /* TLGroupOrderPayInfo.m in Sources */,
 				34B01BEE1D2CEE3500AD3BE7 /* TLUser_account_info.m in Sources */,
 				34B01B881D2CEE3500AD3BE7 /* TLBalanceCurveViewController.m in Sources */,
+				343AB8DC1D4883E2007BB418 /* NSURL+QueryDictionary.m in Sources */,
 				34B01C4B1D2CEE3500AD3BE7 /* TLSubListData.m in Sources */,
 				34B01C521D2CEE3500AD3BE7 /* TLAddressesListViewCell.m in Sources */,
 				34B01BF21D2CEE3500AD3BE7 /* TLVersionRequest.m in Sources */,
@@ -3087,6 +3125,7 @@
 				34B01C351D2CEE3500AD3BE7 /* TLDeliveriesDataViewController.m in Sources */,
 				34B01BBB1D2CEE3500AD3BE7 /* TLGroupCouponVoucherBase.m in Sources */,
 				34B01C3B1D2CEE3500AD3BE7 /* TLAllAddresses.m in Sources */,
+				343AB8E01D488BB6007BB418 /* UserGuideController.m in Sources */,
 				34B01C281D2CEE3500AD3BE7 /* TLNavigationBar.m in Sources */,
 				34B01C191D2CEE3500AD3BE7 /* LegendView.m in Sources */,
 				FBC65C161D47C58B00666595 /* LTMineViewController.m in Sources */,
@@ -3097,6 +3136,7 @@
 				34B01B971D2CEE3500AD3BE7 /* TLGroupOrderUnusedListViewController.m in Sources */,
 				34B01B3A1D2CEE3400AD3BE7 /* TLProductAll.m in Sources */,
 				34B01B2C1D2CEE3400AD3BE7 /* TLProdBoby.m in Sources */,
+				343AB8E41D4896B8007BB418 /* GetVersion.m in Sources */,
 				34B01C481D2CEE3500AD3BE7 /* TLShopCarChangeNumberRequest.m in Sources */,
 				34B01C321D2CEE3500AD3BE7 /* TLChoiceCouponListViewController.m in Sources */,
 				34B01C5E1D2CEE3500AD3BE7 /* TLOrderLastView.m in Sources */,

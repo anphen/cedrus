@@ -23,8 +23,13 @@
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKConnector/ShareSDKConnector.h>
 #import <YTKNetworkConfig.h>
+#import "UserGuideController.h"
+#import "GetVersion.h"
 
 @interface AppDelegate () <WXApiDelegate, UIAlertViewDelegate, BMKLocationServiceDelegate>
+{
+    UIWindow *_splashWindow;
+}
 
 @property (nonatomic, copy) NSString *payResult;
 @property (nonatomic, strong) TLVersionParam *version;
@@ -41,6 +46,9 @@
     [self setNetWorkConfig];
     [self configShareSDK];
     [self configRoutes];
+    [self showMainView];
+    [self checkFirstLanch];
+    [[GetVersion sharedInstance]checkVersion];
     //    [ShareSDK registerApp:@"888f5d8355d8"];
     //    [self initializaPlat];
 
@@ -60,11 +68,6 @@
     //        [storyBoard instantiateViewControllerWithIdentifier:@"firstnavi"];
     //    }
     
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.rootViewController = [[LTMainViewController alloc] init];
-    [self.window makeKeyAndVisible];
-
     return YES;
 }
 
@@ -130,6 +133,38 @@
         return YES;
     }
     return YES;
+}
+
+#pragma mark - check launch & vesion
+- (void)checkFirstLanch
+{
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"FirstLaunch"]) {
+        [self showGuideView];
+    }
+}
+
+- (void)showGuideView
+{
+    if (!_splashWindow) {
+        UserGuideController *guideViewController = [[UserGuideController alloc] init];
+       _splashWindow = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        _splashWindow.userInteractionEnabled = YES;
+        _splashWindow.rootViewController = guideViewController;
+        [_splashWindow makeKeyAndVisible];
+    }
+}
+
+- (void)dismissGuideView
+{
+    _splashWindow = nil;
+}
+
+- (void)showMainView
+{
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.rootViewController = [[LTMainViewController alloc] init];
+    [self.window makeKeyAndVisible];
 }
 
 #pragma mark - config & setup

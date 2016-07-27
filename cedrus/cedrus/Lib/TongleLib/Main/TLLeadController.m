@@ -24,7 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Tongle_Base" bundle:nil];
     if (![[NSUserDefaults standardUserDefaults] objectForKey:TLLEADKRY])
     {
