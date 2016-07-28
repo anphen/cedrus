@@ -8,8 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, LoginStateType) {
+    LTLoginStateNO = 1,
+    LTLoginStateYes
+};
+
 @interface LTUrlUtility : NSObject
 
 + (NSString *)baseUrl;
+
++ (NSDictionary *)getParametersWithDictionary:(NSDictionary *)paramDictionary loginState:(LoginStateType)type;
 
 @end

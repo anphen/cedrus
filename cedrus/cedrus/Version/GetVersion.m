@@ -8,6 +8,7 @@
 
 #import "GetVersion.h"
 #import "MJExtension.h"
+#import "LTUrlUtility.h"
 
 @interface GetVersion () <UIAlertViewDelegate>
 {
@@ -42,9 +43,9 @@
     }
     
     [_versionApi startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
+        id json = [NSJSONSerialization JSONObjectWithData:request.responseData options:NSJSONReadingMutableLeaves error:nil];
+        LTLog(@"%@", json);
         
-        
-        LTLog(@"success");
     } failure:^(__kindof YTKBaseRequest *request) {
         
         
@@ -73,7 +74,6 @@
 //    }];
 }
 
-#pragma mark
 #pragma mark Action
 
 - (NSString *)stringFromDate:(NSDate *)date {
@@ -89,7 +89,6 @@
     [[UIApplication sharedApplication] openURL:url];
 }
 
-#pragma mark
 #pragma mark UIAlertView
 
 - (void)showNewVersionAlertWithMessage:(NSString *)message {
@@ -134,24 +133,23 @@
 
 - (id)requestArgument
 {
-    NSDictionary *dic = @{@"head":@{@"user_id":@"",
-                                    @"user_token":@"",
-                                    @"app_inner_no":@"1"
-                                    },
-                          @"local_app_version":@"1.3.0",
-                          @"mobile_os_no":@"1"
-                          };
-    
-   NSString *json_string = [[NSString alloc]initWithData:[NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
-    
-    return @{@"parameters_json": json_string
-             };
-//    return @{@"parameters_json":@"{\n  \"head\" : \"{\\n  \\\"user_id\\\" : \\\"\\\",\\n  \\\"user_token\\\" : \\\"\\\",\\n  \\\"app_inner_no\\\" : \\\"01\\\"\\n}\",\n  \"local_app_version\" : \"1.3.0\",\n  \"mobile_os_no\" : \"1\"\n}"}
+//    NSDictionary *dic = @{@"head":@{@"user_id":@"",
+//                                    @"user_token":@"",
+//                                    @"app_inner_no":@"01"
+//                                    },
+//                          @"local_app_version":@"1.3.0",
+//                          @"mobile_os_no":@"1"
+//                          };
+//    
+//   NSString *json_string = [[NSString alloc]initWithData:[NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+//    
+//    return @{@"parameters_json": json_string};
+    return [LTUrlUtility getParametersWithDictionary:@{@"local_app_version":@"1.3.0", @"mobile_os_no":@"1"} loginState:LTLoginStateNO];
 }
 
-- (NSString *)baseUrl
-{
-    return @"http://117.78.37.252/api/2.0";
-}
+//- (YTKRequestSerializerType)requestSerializerType
+//{
+//    return YTKRequestSerializerTypeJSON;
+//}
 
 @end

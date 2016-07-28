@@ -9,6 +9,9 @@
 #ifndef GlobalDefines_h
 #define GlobalDefines_h
 
+//app内部编号
+#define APP_INNER_NO @"01"
+
 //判断是否为iPhone
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
 
