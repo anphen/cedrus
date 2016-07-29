@@ -9,12 +9,15 @@
 #import "GetVersion.h"
 #import "MJExtension.h"
 #import "LTUrlUtility.h"
+#import "LTVersionItem.h"
 
 @interface GetVersion () <UIAlertViewDelegate>
 {
     NSString * _currentVersion;
 }
 @property (nonatomic, strong) GetVersionApi *versionApi;
+@property (nonatomic, strong) LTVersionItem *versionItem;
+
 @end
 
 @implementation GetVersion
@@ -44,34 +47,21 @@
     
     [_versionApi startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
         id json = [NSJSONSerialization JSONObjectWithData:request.responseData options:NSJSONReadingMutableLeaves error:nil];
-        LTLog(@"%@", json);
         
+        LTGlobalItem *item = [[LTGlobalItem alloc]initWithItemClass:@"LTVersionItem" json:json];
+        if ([item handleHead]) {
+            LTVersionItem *bodyItem = (LTVersionItem *)item.bodyItem;
+            self.versionItem = bodyItem;
+            if ([bodyItem.has_update integerValue] == 1 && ![[[NSUserDefaults standardUserDefaults] objectForKey:@"IgnoreVersion"] isEqualToString:bodyItem.recently_version_no]) {
+                 [[NSUserDefaults standardUserDefaults] setObject:[self stringFromDate:[NSDate date]] forKey:@"firstTime"];
+                [self showNewVersionAlertWithMessage:[NSString stringWithFormat:@"最新版本:%@", bodyItem.recently_version_no]];
+            }
+        }
+
     } failure:^(__kindof YTKBaseRequest *request) {
-        
-        
         
         LTLog(@"fail");
     }];
-//    [_versionApi startWithCompletionBlockWithSuccess:^(B5MBaseRequest *request) {
-//        NSString * versonString = request.responseJSONObject[@"version"];
-//        _currentVersion = request.responseJSONObject[@"version"];
-//        switch ([request.responseJSONObject[@"is_new"] integerValue]) {
-//            case 0: {
-//                
-//                [[NSUserDefaults standardUserDefaults] setObject:[self stringFromDate:[NSDate date]] forKey:@"firstTime"];
-//                if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"IgnoreVersion"] isEqualToString:_currentVersion]) {
-//                    return ;
-//                }
-//                [self showNewVersionAlertWithMessage:[NSString stringWithFormat:@"最新版本:%@",versonString]];
-//            }
-//                break;
-//                
-//            default:
-//                break;
-//        }
-//    } failure:^(B5MBaseRequest *request) {
-//        
-//    }];
 }
 
 #pragma mark Action
@@ -84,13 +74,12 @@
 }
 
 - (void)gotoAppStoreToUpdate {
-    NSURL *url = [NSURL URLWithString:@"https://itunes.apple.com/us/app/id1019035025?mt=8"];//bang5mai/
+    NSURL *url = [NSURL URLWithString:self.versionItem.recently_version_link];
     
     [[UIApplication sharedApplication] openURL:url];
 }
 
 #pragma mark UIAlertView
-
 - (void)showNewVersionAlertWithMessage:(NSString *)message {
     UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示"
                                                      message:message
@@ -108,16 +97,14 @@
                 [self gotoAppStoreToUpdate];
                 break;
             case 2:
-                [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@",_currentVersion] forKey:@"IgnoreVersion"];
+                [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@",self.versionItem.recently_version_no] forKey:@"IgnoreVersion"];
                 break;
             default:
                 break;
         }
     }
 }
-
 @end
-
 
 @implementation GetVersionApi
 
@@ -133,23 +120,7 @@
 
 - (id)requestArgument
 {
-//    NSDictionary *dic = @{@"head":@{@"user_id":@"",
-//                                    @"user_token":@"",
-//                                    @"app_inner_no":@"01"
-//                                    },
-//                          @"local_app_version":@"1.3.0",
-//                          @"mobile_os_no":@"1"
-//                          };
-//    
-//   NSString *json_string = [[NSString alloc]initWithData:[NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
-//    
-//    return @{@"parameters_json": json_string};
     return [LTUrlUtility getParametersWithDictionary:@{@"local_app_version":@"1.3.0", @"mobile_os_no":@"1"} loginState:LTLoginStateNO];
 }
-
-//- (YTKRequestSerializerType)requestSerializerType
-//{
-//    return YTKRequestSerializerTypeJSON;
-//}
 
 @end

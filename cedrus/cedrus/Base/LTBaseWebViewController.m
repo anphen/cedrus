@@ -12,8 +12,18 @@
 #import "UIViewController+Loading.h"
 #import <Masonry.h>
 #import "UIColor+extend.h"
+#import "CustomErrorView.h"
+#import <AFNetworking.h>
+
+extern NSString * const REFRESH_PAGE_NONETWORK;
 
 @interface LTBaseWebViewController () <UIWebViewDelegate, UIScrollViewDelegate>
+{
+    BOOL  _successFirstTime;
+}
+
+@property(nonatomic, assign) NSUInteger retryCount;
+@property (nonatomic, strong) CustomErrorView *errorView;
 
 @end
 
@@ -21,6 +31,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _successFirstTime = NO;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refeshCurrentPageWithNoNetwork:) name:REFRESH_PAGE_NONETWORK object:nil];
+    
     [self.view addSubview: self.mainWebView];
     [self.mainWebView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view.mas_top);
@@ -30,9 +45,23 @@
     }];
     [self configScrollView];
     [self configJavascriptBridge];
+    
     if (self.requestURL) {
         [self loadPageWithURL:self.requestURL];
     }
+}
+
+- (void) refeshCurrentPageWithNoNetwork:(NSNotification *) notification {
+    if ([_errorView isAppear]) {
+        [self refreshCurrentPage];
+    }
+}
+
+- (void) refreshCurrentPage {
+    self.retryCount++;
+    [self.mainWebView stopLoading];
+    [self.errorView disappear];
+    [self.mainWebView.scrollView triggerPullToRefresh];
 }
 
 - (void)configJavascriptBridge
@@ -68,7 +97,6 @@
                                                    forState:SVPullToRefreshStateTriggered];
     [self.mainWebView.scrollView.pullToRefreshView setTitle:@"努力加载中..."
                                                    forState:SVPullToRefreshStateLoading];
-
     [self.mainWebView.scrollView setShowsPullToRefresh:YES];
     [self.mainWebView.scrollView setShowsInfiniteScrolling:NO];
 }
@@ -123,6 +151,7 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
+    [self.errorView disappear];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [self showActivityView];
 }
@@ -132,6 +161,30 @@
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     [self.mainWebView.scrollView.pullToRefreshView stopAnimating];
     [self hideActivityView];
+    _successFirstTime = YES;
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    [self.mainWebView.scrollView.pullToRefreshView stopAnimating];
+    [self.activityView stopAnimating];
+    
+    if(![self isNetworkReachability] && !_successFirstTime) {
+        if ([NSURLErrorDomain isEqualToString:error.domain] &&
+            NSURLErrorCancelled  == [error code]) {
+            if (self.retryCount < 3) {
+                [self refreshCurrentPage];
+            }
+            return;
+        }
+        [_errorView appear];
+    }
+}
+
+- (BOOL)isNetworkReachability
+{
+    return [[AFNetworkReachabilityManager sharedManager] isReachable];
 }
 
 #pragma mark - getters and setters
@@ -147,5 +200,20 @@
     }
     return _mainWebView;
 }
+
+- (CustomErrorView *)errorView
+{
+    if (!_errorView) {
+        _errorView = [[CustomErrorView alloc] initWithFrame:self.view.bounds];
+        [_errorView parentView:self.view];
+        __weak typeof(self) weakSelf = self;
+        _errorView.block = ^(void) {
+            [weakSelf refreshCurrentPage];
+        };
+    }
+    return _errorView;
+}
+
+
 
 @end

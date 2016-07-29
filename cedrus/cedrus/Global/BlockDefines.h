@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 b5m. All rights reserved.
 //
 
-#ifndef korea_BlockDefines_h
-#define korea_BlockDefines_h
+#ifndef BlockDefines_h
+#define BlockDefines_h
 
 
 typedef void (^voidBlock)();

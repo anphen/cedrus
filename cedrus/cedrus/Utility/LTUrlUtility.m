@@ -21,6 +21,7 @@
 {
     NSString *parametersString;
     NSMutableDictionary *parameDic = [NSMutableDictionary dictionaryWithDictionary:paramDictionary];
+    
     switch (type) {
         case LTLoginStateNO:{
              NSDictionary *headDict = [NSDictionary dictionaryWithObjectsAndKeys:APP_INNER_NO,@"app_inner_no",@"",@"user_id",@"",@"user_token", nil];

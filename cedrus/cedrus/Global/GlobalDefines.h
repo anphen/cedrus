@@ -9,6 +9,10 @@
 #ifndef GlobalDefines_h
 #define GlobalDefines_h
 
+#define STORYBOARD  @"Tongle_Base"
+
+#define TLYES     @"0"
+
 //app内部编号
 #define APP_INNER_NO @"01"
 
@@ -68,13 +72,13 @@
 #define LTLog(...)
 #endif
 
-
-
 #define LRViewBorderRadius(View, Radius, Width, Color)\
 \
 [View.layer setCornerRadius:(Radius)];\
 [View.layer setMasksToBounds:YES];\
 [View.layer setBorderWidth:(Width)];\
 [View.layer setBorderColor:[Color CGColor]]
+
+#define LTIsDictionary(obj) [obj isKindOfClass:[NSDictionary class]]
 
 #endif /* GlobalDefines_h */

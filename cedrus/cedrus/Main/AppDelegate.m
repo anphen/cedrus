@@ -25,10 +25,17 @@
 #import <YTKNetworkConfig.h>
 #import "UserGuideController.h"
 #import "GetVersion.h"
+#import "UIApplication+ActivityViewController.h"
+#import <objc/message.h>
+#import <AFNetworking.h>
+#import <SVProgressHUD.h>
+
+NSString * const REFRESH_PAGE_NONETWORK = @"REFRESH_PAGE_NONETWORK";
 
 @interface AppDelegate () <WXApiDelegate, UIAlertViewDelegate, BMKLocationServiceDelegate>
 {
     UIWindow *_splashWindow;
+    AFNetworkReachabilityStatus _oldStatus;
 }
 
 @property (nonatomic, copy) NSString *payResult;
@@ -44,6 +51,7 @@
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self setNetWorkConfig];
+    [self setupNetworkMoniter];
     [self configShareSDK];
     [self configRoutes];
     [self showMainView];
@@ -76,7 +84,7 @@
 
     // Restart any tasks that were paused (or not yet started) while the application was inactive.
     // If the application was previously in the background, optionally refresh the user interface.
-    [self versionCheck];
+//    [self versionCheck];
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
@@ -224,8 +232,88 @@
     config.baseUrl = [LTUrlUtility baseUrl];
 }
 
+- (id)setupNetworkMoniter
+{
+    _oldStatus = AFNetworkReachabilityStatusNotReachable;
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:(^(AFNetworkReachabilityStatus status) {
+        if (AFNetworkReachabilityStatusNotReachable == status && AFNetworkReachabilityStatusNotReachable != _oldStatus) {
+            [SVProgressHUD showErrorWithStatus:@"网络不给力，请注意检查网络"];
+        } else if (AFNetworkReachabilityStatusNotReachable != status &&
+                   AFNetworkReachabilityStatusUnknown != status) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:REFRESH_PAGE_NONETWORK object:nil];
+        }
+        _oldStatus = status;
+    })];
+    return self;
+}
+
 - (void)configRoutes
 {
+
+    [JLRoutes addRoute:@"nativepage/change" handler:^BOOL(NSDictionary * _Nonnull parameters) {
+        LTLog(@"%@", parameters);
+        
+        Class clz = NSClassFromString(parameters[@"class"]);
+        BOOL animationOrNo = YES;
+        
+        if (parameters[@"animation"]) {
+            animationOrNo = parameters[@"animation"];
+        }
+        
+        if (!clz) {
+            return YES;
+        }
+
+        UIViewController *nativePage = [clz new];
+        UIViewController *activityViewController = [[UIApplication sharedApplication]activityViewController];
+        if ([parameters[@"changeStyle"] isEqualToString:@"modal"]) {
+            [activityViewController presentViewController:nativePage animated:animationOrNo completion:nil];
+        }
+        else{
+            [activityViewController.navigationController pushViewController:nativePage animated:animationOrNo];
+        }
+        
+        NSDictionary *args = parameters [@"args"];
+        
+        if (args) {
+            [args enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                [nativePage setValue:obj forKey:key];
+            }];
+        }
+        
+        return YES;
+    }];
+    
+    [JLRoutes addRoute:@"nativeMethod/call" handler:^BOOL(NSDictionary * _Nonnull parameters) {
+        
+        LTLog(@"%@", parameters);
+        NSString *target = parameters[@"target"];
+        NSString *method = parameters[@"method"];
+        
+        if (!(target && method)) {
+            return YES;
+        }
+        
+        Class targetClass = NSClassFromString(target);
+        
+        SEL targetMethod = NSSelectorFromString(method);
+        
+        UIViewController *activityViewController = [[UIApplication sharedApplication]activityViewController];
+        
+        if ([activityViewController respondsToSelector:targetMethod]) {
+            [activityViewController performSelector:targetMethod withObject:parameters];
+        }
+        else
+        {
+            if ([targetClass instancesRespondToSelector:targetMethod])
+            {
+                [[targetClass new] performSelector:targetMethod withObject:parameters];
+            }
+        }
+        
+        return YES;
+    }];
     
 }
 
@@ -309,74 +397,74 @@
     [TLUserDefaults setObject:@"" forKey:TL_LATITUDE];
 }
 
-//版本更新检查
-- (void)versionCheck
-{
-
-    NSString *url = [NSString stringWithFormat:@"%@%@", Url, version_check_Url];
-    TLVersionRequest *versionRequest = [[TLVersionRequest alloc] init];
-    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    // app版本
-    NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
-    NSString *app_Version_Number =
-        [app_Version stringByReplacingOccurrencesOfString:@"." withString:@""];
-
-    versionRequest.local_app_version = app_Version;
-
-    NSArray *array_local_Version = [app_Version componentsSeparatedByString:@"."];
-
-    [TLBaseTool postWithURL:url
-        param:versionRequest
-        success:^(id result) {
-            TLVersionParam *version = result;
-            _version = version;
-            NSString *array_recently_Version_Number =
-                [version.recently_version_no stringByReplacingOccurrencesOfString:@"."
-                                                                       withString:@""];
-
-            if ([array_recently_Version_Number integerValue] > [app_Version_Number integerValue])
-            {
-                NSArray *array_recently_Version =
-                    [version.recently_version_no componentsSeparatedByString:@"."];
-
-                if ((![array_recently_Version[0] isEqualToString:array_local_Version[0]])
-                    || (![array_recently_Version[1] isEqualToString:array_local_Version[1]]))
-                {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"版本更新"
-                                                                            message:nil
-                                                                           delegate:self
-                                                                  cancelButtonTitle:nil
-                                                                  otherButtonTitles:@"更新", nil];
-                        [alertview show];
-                    });
-                }
-                else if (![[array_recently_Version objectAtIndexCheck:2]
-                             isEqualToString:[array_local_Version objectAtIndexCheck:2]])
-                {
-                    NSString *cancel_up_no =
-                        [[NSUserDefaults standardUserDefaults] objectForKey:TL_CANCEL_UP_NO];
-
-                    if (![cancel_up_no isEqualToString:version.recently_version_no])
-                    {
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            UIAlertView *alertview =
-                                [[UIAlertView alloc] initWithTitle:@"版本更新"
-                                                           message:nil
-                                                          delegate:self
-                                                 cancelButtonTitle:@"取消"
-                                                 otherButtonTitles:@"更新", nil];
-                            [alertview show];
-                        });
-                    }
-                }
-            }
-        }
-        failure:^(NSError *error) {
-            error = nil;
-        }
-        resultClass:[TLVersionParam class]];
-}
+////版本更新检查
+//- (void)versionCheck
+//{
+//
+//    NSString *url = [NSString stringWithFormat:@"%@%@", Url, version_check_Url];
+//    TLVersionRequest *versionRequest = [[TLVersionRequest alloc] init];
+//    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+//    // app版本
+//    NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+//    NSString *app_Version_Number =
+//        [app_Version stringByReplacingOccurrencesOfString:@"." withString:@""];
+//
+//    versionRequest.local_app_version = app_Version;
+//
+//    NSArray *array_local_Version = [app_Version componentsSeparatedByString:@"."];
+//
+//    [TLBaseTool postWithURL:url
+//        param:versionRequest
+//        success:^(id result) {
+//            TLVersionParam *version = result;
+//            _version = version;
+//            NSString *array_recently_Version_Number =
+//                [version.recently_version_no stringByReplacingOccurrencesOfString:@"."
+//                                                                       withString:@""];
+//
+//            if ([array_recently_Version_Number integerValue] > [app_Version_Number integerValue])
+//            {
+//                NSArray *array_recently_Version =
+//                    [version.recently_version_no componentsSeparatedByString:@"."];
+//
+//                if ((![array_recently_Version[0] isEqualToString:array_local_Version[0]])
+//                    || (![array_recently_Version[1] isEqualToString:array_local_Version[1]]))
+//                {
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+//                        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"版本更新"
+//                                                                            message:nil
+//                                                                           delegate:self
+//                                                                  cancelButtonTitle:nil
+//                                                                  otherButtonTitles:@"更新", nil];
+//                        [alertview show];
+//                    });
+//                }
+//                else if (![[array_recently_Version objectAtIndexCheck:2]
+//                             isEqualToString:[array_local_Version objectAtIndexCheck:2]])
+//                {
+//                    NSString *cancel_up_no =
+//                        [[NSUserDefaults standardUserDefaults] objectForKey:TL_CANCEL_UP_NO];
+//
+//                    if (![cancel_up_no isEqualToString:version.recently_version_no])
+//                    {
+//                        dispatch_async(dispatch_get_main_queue(), ^{
+//                            UIAlertView *alertview =
+//                                [[UIAlertView alloc] initWithTitle:@"版本更新"
+//                                                           message:nil
+//                                                          delegate:self
+//                                                 cancelButtonTitle:@"取消"
+//                                                 otherButtonTitles:@"更新", nil];
+//                            [alertview show];
+//                        });
+//                    }
+//                }
+//            }
+//        }
+//        failure:^(NSError *error) {
+//            error = nil;
+//        }
+//        resultClass:[TLVersionParam class]];
+//}
 
 //-(void)initializaPlat
 //{

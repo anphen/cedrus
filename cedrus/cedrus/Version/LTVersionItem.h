@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LTVersionItem : NSObject
+@interface LTVersionItem : LTBaseItem
 
 //是否有更新
 @property (nonatomic,copy) NSString *has_update;
